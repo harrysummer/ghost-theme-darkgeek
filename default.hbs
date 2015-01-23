@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{! Document Settings }}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    {{! Page Meta }}
+    <title>{{meta_title}}</title>
+    <meta name="description" content="{{meta_description}}" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111111">
+
+    <link rel="shortcut icon" href="{{asset "favicon.ico"}}">
+
+    {{! Ghost outputs important style and meta data with this tag }}
+    {{ghost_head}}
+
+    {{! Styles'n'Scripts }}
+    <!--<link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}" />-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            jax: ["input/TeX", "output/HTML-CSS"],
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                processEscapes: true
+            },
+            "HTML-CSS": { availableFonts: ["TeX"] }
+        });
+    </script>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css"/>
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/g/pure@0.5.0(pure-min.css+grids-responsive-min.css)"/>
+    <link rel="stylesheet" href="{{asset "css/style.css"}}"/>
+</head>
+<body class="{{body_class}}">
+    {{! Ghost outputs important scripts and data with this tag }}
+    {{ghost_foot}}
+    {{! The main JavaScript file for Casper }}
+    <!--<script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
+    <script type="text/javascript" src="{{asset "js/index.js"}}"></script> -->
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('code').each(function(i, block) {
+                var html = $(block).html();
+                html = html.replace(/^(\n|\r)+/, "").replace(/(\n|\r)$/, "");
+                $(block).html(html);
+                $(block).wrap("<pre></pre>");
+                hljs.highlightBlock(block);
+            });
+        });
+    </script>
+<div class="pure-g">
+    {{! Everything else gets inserted here }}
+    {{{body}}}
+
+    <!--<footer class="site-footer clearfix">
+        <section class="copyright"><a href="{{@blog.url}}">{{@blog.title}}</a> &copy; {{date format="YYYY"}}</section>
+        <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>-->
+</div>
+
+
+
+</body>
+</html>
